@@ -27,7 +27,7 @@ include 'header.php';
             <a href="">Reports</a>
         </li>
         <li>
-            <a href="">Settings</a>
+            <a href="../setting/index.php?action=setting_list">Settings</a>
         </li>
     </ul>
 </main>

@@ -33,4 +33,17 @@ function add_user($email, $password, $first_name, $last_name) {
     $statement->closeCursor();
     return true;
 }
+
+function get_personal_info($user_id) {
+    global $db; 
+    $query = 'select * 
+             from users
+             where userId = :userId';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':userId', $user_id);
+    $statement->execute();
+    $row = $statement->fetch();
+    $statement->closeCursor();
+    return $row;
+}
 ?>
