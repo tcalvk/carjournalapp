@@ -11,7 +11,7 @@
 <body>
     <header>
         <h1>Car Journal</h1>
-        <p>Welcome, <?php echo $_COOKIE['FirstName'] ?></p>
+        <p>Welcome</p>
         <p>
             <form action="/carjournalapp/" method="post">
                 <input type="hidden" name="action" value="logout">

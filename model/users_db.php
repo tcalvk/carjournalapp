@@ -46,4 +46,70 @@ function get_personal_info($user_id) {
     $statement->closeCursor();
     return $row;
 }
+
+function change_firstname($user_id, $new_firstname) {
+    global $db; 
+    $query = 'update users
+             set FirstName = :new_firstname
+             where userId = :user_id';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':new_firstname', $new_firstname);
+    $statement->bindValue(':user_id', $user_id);
+    $statement->execute();
+    $statement->closeCursor();
+    return true;
+}
+
+function change_lastname($user_id, $new_lastname) {
+    global $db; 
+    $query = 'update users
+             set LastName = :new_lastname
+             where userId = :user_id';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':new_lastname', $new_lastname);
+    $statement->bindValue(':user_id', $user_id);
+    $statement->execute();
+    $statement->closeCursor();
+    return true;
+}
+
+function change_email($user_id, $new_email) {
+    global $db; 
+    $query = 'update users
+             set email = :new_email
+             where userId = :user_id';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':new_email', $new_email);
+    $statement->bindValue(':user_id', $user_id);
+    $statement->execute();
+    $statement->closeCursor();
+    return true;
+}
+
+function check_current_password($user_id) {
+    global $db; 
+    $query = 'select *
+             from users 
+             where userId = :user_id';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':user_id', $user_id);
+    $statement->execute();
+    $row = $statement->fetch();
+    $statement->closeCursor();
+    return $row;
+}
+
+function change_password($user_id, $new_password) {
+    global $db; 
+    $hash = password_hash($new_password, PASSWORD_DEFAULT);
+    $query = 'update users
+             set password = :password
+             where userId = :user_id';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':password', $hash);
+    $statement->bindValue(':user_id', $user_id);
+    $statement->execute();
+    $statement->closeCursor();
+    return true;
+}
 ?>

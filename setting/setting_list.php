@@ -31,8 +31,23 @@ include '../view/header.php'
                 <td><?php echo $personal_info['LastName']; ?></td>
             </tr>
             <tr>
-                <td>Edit</td>
-                <td>Edit</td>
+                <td><a href="index.php?action=change_firstname">Edit</a></td>
+                <td><a href="index.php?action=change_lastname">Edit</a></td>
+            </tr>
+        </table>
+        <h2>Login Information</h2>
+        <table>
+            <tr>
+                <th>Email</th>
+                <th>Password</th>
+            </tr>
+            <tr>
+                <td><?php echo $personal_info['email']; ?></td>
+                <td>***********</td>
+            </tr>
+            <tr>
+                <td><a href="index.php?action=change_email">Change</a></td>
+                <td><a href="index.php?action=change_password">Change</a></td>
             </tr>
         </table>
     </section>
