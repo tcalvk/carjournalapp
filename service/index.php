@@ -88,4 +88,9 @@ else if ($action == 'service_list') {
         include 'service_list.php';
     }
 }
+
+else if ($action == 'service_details') {
+    $service_id = filter_input(INPUT_GET, 'service_id');
+    include 'service_detail.php';
+}
 ?>
