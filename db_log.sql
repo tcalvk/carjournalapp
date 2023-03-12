@@ -1,0 +1,4 @@
+--Instructions: -- 
+--Use this file to note database structure updates for push to production
+--Use the following wrapper for each update: 
+--ver x.x <short date>
