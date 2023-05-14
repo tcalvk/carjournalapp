@@ -1,9 +1,12 @@
 <?php 
 function get_locations($user_id) {
     global $db;
-    $query = 'select * 
-             from location
-             where (createdBy = :createdBy or locationId = 14)';
+    $query = 'select l.locationId, l.name, l.address1, l.address2, l.city, l.state, l.zip, l.phone, l.email, l.website, count(s.serviceId) "TimesUsed"
+             from location l
+             left join service s on l.locationId = s.locationId
+             where l.createdBy = :createdBy
+             and l.Deleted is null
+             group by l.locationId, l.name, l.address1, l.address2, l.city, l.state, l.zip, l.phone, l.email, l.website';
     $statement = $db->prepare($query);
     $statement->bindValue(':createdBy', $user_id);
     $statement->execute();
@@ -27,6 +30,19 @@ function add_location($name, $address1, $address2, $city, $state, $zip, $phone, 
     $statement->bindValue(':email', $email);
     $statement->bindValue(':website', $website);
     $statement->bindValue(':createdBy', $user_id);
+    $statement->execute();
+    $statement->closeCursor();
+    return true;
+}
+
+function delete_location($location_id, $current_date) {
+    global $db; 
+    $query = 'update location
+             set Deleted = :current_date
+             where locationId = :locationId';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':current_date', $current_date);
+    $statement->bindValue(':locationId', $location_id);
     $statement->execute();
     $statement->closeCursor();
     return true;

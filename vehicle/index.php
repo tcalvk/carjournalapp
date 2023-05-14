@@ -80,13 +80,8 @@ else if ($action == 'delete_vehicle') {
             $error = "Invalid data. Contact your database administrator.";
             include('../errors/error.php');
         } else {
-            try {
-                delete_vehicle($vehicle_id);
-            } catch (Exception $e) {
-                $error_message = $e->getMessage();
-                include('../errors/error.php');
-                exit();
-            }
+            $current_date = date('Y-m-d H:i:s');
+            $delete = delete_vehicle($vehicle_id, $current_date);
             header('Location: .');
         }
     }

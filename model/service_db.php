@@ -1,16 +1,12 @@
 <?php 
-function add_service ($vehicle_id, $service_date, $service_type_id, $date_added, 
-                    $location_id, $service_miles, $service_cost, $user_id) {
+function add_service($vehicle_id, $service_date, $service_type, $date_added, $location_id, $service_miles, $service_cost, $user_id) {
     global $db;
-    $query = 'insert into service (vehicleId, serviceDate, serviceTypeId, dateAdded, locationId, serviceMiles,
-             serviceCost, createdBy)
-             
-             values (:vehicleId, :serviceDate, :serviceTypeId, :dateAdded, :locationId, :serviceMiles, 
-             :serviceCost, :createdBy)';
+    $query = 'insert into service (vehicleId, serviceDate, serviceType, dateAdded, locationId, serviceMiles, serviceCost, createdBy)
+             values (:vehicleId, :serviceDate, :serviceType, :dateAdded, :locationId, :serviceMiles, :serviceCost, :createdBy)';
     $statement = $db->prepare($query);
     $statement->bindValue(':vehicleId', $vehicle_id);
     $statement->bindValue(':serviceDate', $service_date);
-    $statement->bindValue(':serviceTypeId', $service_type_id);
+    $statement->bindValue(':serviceType', $service_type);
     $statement->bindValue(':dateAdded', $date_added);
     $statement->bindValue(':locationId', $location_id);
     $statement->bindValue(':serviceMiles', $service_miles);
@@ -23,9 +19,8 @@ function add_service ($vehicle_id, $service_date, $service_type_id, $date_added,
 
 function get_services_by_vehicle($vehicle_id) {
     global $db;
-    $query = 'select s.*, st.name "serviceTypeName", l.name "locationName"
+    $query = 'select s.*, l.name "locationName"
              from service s 
-             left join serviceType st on s.serviceTypeId = st.serviceTypeId
              left join location l on s.locationId = l.locationId
              where vehicleId = :vehicleId';
     $statement = $db->prepare($query);
@@ -49,6 +44,19 @@ function get_single_service_by_vehicle($vehicle_id) {
     $top_service = $statement->fetch();
     $statement->closeCursor();
     return $top_service;
+}
+
+function get_service_by_id($service_id) {
+    global $db;
+    $query = 'select s.*, l.name "locationName", l.city
+             from service s
+             left join location l on s.locationId = l.locationId 
+             where s.serviceId = :serviceId';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':serviceId', $service_id);
+    $statement->execute();
+    $details = $statement->fetch();
+    return $details;
 }
 
 ?>

@@ -5,7 +5,8 @@ function get_vehicles($user_id) {
              from vehicle v 
              left join make mk on v.makeId = mk.makeId
              left join model md on v.modelId = md.modelId
-             where v.ownerId = :ownerId';
+             where v.ownerId = :ownerId
+             and v.Deleted is null';
     $statement = $db->prepare($query);
     $statement->bindValue(':ownerId', $user_id);
     $statement->execute();
@@ -39,14 +40,17 @@ function add_vehicle($vin, $make_id, $model_id, $year, $color, $purchase_date, $
     $statement->closeCursor();
 }
 
-function delete_vehicle($vehicle_id) {
+function delete_vehicle($vehicle_id, $current_date) {
     global $db;
-    $query = 'delete from vehicle
+    $query = 'update vehicle
+             set Deleted = :current_date
              where vehicleId = :vehicleId';
     $statement = $db->prepare($query);
     $statement->bindValue(':vehicleId', $vehicle_id);
+    $statement->bindValue(':current_date', $current_date);
     $statement->execute();
     $statement->closeCursor();
+    return true;
 }
 
 function get_vehicle_by_id($vehicle_id) {
@@ -55,7 +59,8 @@ function get_vehicle_by_id($vehicle_id) {
              from vehicle v 
              left join make mk on v.makeId = mk.makeId
              left join model md on v.modelId = md.modelId
-             where v.vehicleId = :vehicleId';
+             where v.vehicleId = :vehicleId
+             and v.Deleted is null';
     $statement = $db->prepare($query);
     $statement->bindValue(':vehicleId', $vehicle_id);
     $statement->execute();

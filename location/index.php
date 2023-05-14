@@ -6,18 +6,23 @@ require '../model/database.php';
 require '../model/users_db.php';
 require '../model/location_db.php';
 $save_message = filter_input(INPUT_GET, 'save_message');
+$user_id = $_COOKIE['userId'];
 
 $action = filter_input(INPUT_POST, 'action');
 if ($action == null) {
     $action = filter_input(INPUT_GET, 'action');
-    if ($action == 'add_location') {
-        include 'add_location.php';
-    } 
-    else if ($action == 'list_locations') {
-        $locations = get_locations($user_id);
-        include 'location_list.php';
+    if ($action == null) {
+        $action = 'list_locations';
     }
-    
+}
+
+if ($action == 'add_location') {
+    include 'add_location.php';
+} 
+
+else if ($action == 'list_locations') {
+    $locations = get_locations($user_id);
+    include 'location_list.php';
 }
 
 else if ($action == 'submit_location') {
@@ -65,6 +70,24 @@ else if ($action == 'submit_location') {
             header("Location: .?action=add_location&save_message=Save error. Try again.");
         }
     }   
+}
+
+else if ($action == 'delete_location') {
+    $delete_confirm = filter_input(INPUT_POST, 'remove_boolean'); 
+    
+    if ($delete_confirm == 'false') {
+        header('Location: .');
+    } else {
+        $location_id = filter_input(INPUT_POST, 'location_id', FILTER_VALIDATE_INT);
+        if ($location_id == null) {
+            $error = "Invalid data. Contact your database administrator.";
+            include('../errors/error.php');
+        } else {
+            $current_date = date('Y-m-d H:i:s');
+            $delete = delete_location($location_id, $current_date);
+            header('Location: .');
+        }
+    }
 }
 
 ?>

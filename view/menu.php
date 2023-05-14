@@ -12,23 +12,25 @@ include 'header.php';
 </script>
 -->
 <main>
-    <h1>Menu</h1>
-    <ul>
-        <li>
-            <a href="../service/index.php?action=select_vehicle_from_list">Add a Service Record</a>
-        </li>
-        <li>
-            <a href="../vehicle/">My Vehicles</a>
-        </li>
-        <li>
-            <a href="../location/index.php?action=list_locations">Service Locations</a>
-        </li>
-        <li>
-            <a href="">Reports</a>
-        </li>
-        <li>
-            <a href="../setting/index.php?action=setting_list">Settings</a>
-        </li>
-    </ul>
+    <div class="col-12 col-md-3 col-xl-2 bd-sidebar">
+        <h1>Menu</h1>
+        <ul>
+            <li>
+                <a href="../service/index.php?action=select_vehicle_from_list">Add a Service Record</a>
+            </li>
+            <li>
+                <a href="../vehicle/">My Vehicles</a>
+            </li>
+            <li>
+                <a href="../location/index.php?action=list_locations">Service Locations</a>
+            </li>
+            <li>
+                <a href="">Reports</a>
+            </li>
+            <li>
+                <a href="../setting/index.php?action=setting_list">Settings</a>
+            </li>
+        </ul>
+    </div>
 </main>
 <?php include 'footer.php'; ?>

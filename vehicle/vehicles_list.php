@@ -19,47 +19,44 @@ include '../view/header.php';
 </script>
 
 <main>
-    <h1>Vehicles</h1>
-    <aside>
-        <!--Display a nav menu-->
-        <h2>Menu</h2>
-        <nav>
-            <ul>
-                <a href="../">Home</a><br>
-            </ul>
-        </nav>
-    </aside>
-
-    <section>
-        <!--Display a table of vehicles-->
+    <div class="container">
+        <br>
         <h2>My Vehicles</h2>
-        <table>
-            <tr>
-                <th>Make</th>
-                <th>Model</th>
-                <th>Year</th>
-                <th>&nbsp;</th>
-            </tr>
-            <?php foreach ($vehicles as $vehicle) : ?>
-            <tr>
-                <td>
-                    <a href="../service/index.php?action=service_list&vehicle_id=<?php echo $vehicle['vehicleId']; ?>"> 
-                        <?php echo $vehicle['makeName']; ?>
-                    </a>
-                </td>
-                <td><?php echo $vehicle['modelName']; ?></td>
-                <td><?php echo $vehicle['year']; ?></td>
-                <td>
-                    <form action="." method="post" onsubmit="remove_function()">
-                        <input type="hidden" name="action" value="delete_vehicle">
-                        <input type="hidden" name="vehicle_id" value="<?php echo $vehicle['vehicleId']; ?>">
-                        <input type="hidden" name="remove_boolean" id="remove_boolean">
-                        <input type="submit" value="Remove">
-                    </form>
-                </td>
-            </tr>
-            <?php endforeach; ?>
+    </div>
+
+    <div class="container">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Make</th>
+                    <th scope="col">Model</th>
+                    <th scope="col">Year</th>
+                    <th scope="col">&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($vehicles as $vehicle) : ?>
+                <tr>
+                    <td>
+                        <a href="../service/index.php?action=service_list&vehicle_id=<?php echo $vehicle['vehicleId']; ?>"> 
+                            <?php echo $vehicle['makeName']; ?>
+                        </a>
+                    </td>
+                    <td><?php echo $vehicle['modelName']; ?></td>
+                    <td><?php echo $vehicle['year']; ?></td>
+                    <td>
+                        <form action="." method="post" onsubmit="remove_function()">
+                            <input type="hidden" name="action" value="delete_vehicle">
+                            <input type="hidden" name="vehicle_id" value="<?php echo $vehicle['vehicleId']; ?>">
+                            <input type="hidden" name="remove_boolean" id="remove_boolean">
+                            <input type="submit" value="Remove">
+                        </form>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
         </table>
+        <br>
         <p class="last_paragraph">
             <button onclick="show_make_form()">Add Vehicle</button>
         </p>
@@ -79,6 +76,6 @@ include '../view/header.php';
         <div>
             <p class="error"><?php echo $error_message; ?></p>
         </div>
-    </section>
-</main>
+    </div>
+</main> 
 <?php include '../view/footer.php'; ?>

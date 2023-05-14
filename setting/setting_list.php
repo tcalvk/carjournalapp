@@ -7,49 +7,33 @@ include '../view/header.php'
 ?>
 
 <main>
-    <h1>Settings</h1>
-    <aside>
-        <!--Display a nav menu-->
-        <h2>Menu</h2>
-        <nav>
-            <ul>
-                <a href="../">Home</a><br>
-            </ul>
-        </nav>
-    </aside>
+    <div class="container">
+        <h2>Settings</h2><br>
+        <h4>Personal Information</h3>
 
-    <section>
-        <!--Display a table of vehicles-->
-        <h2>Personal Information</h2>
-        <table>
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-            </tr>
-            <tr>
-                <td><?php echo $personal_info['FirstName']; ?></td>
-                <td><?php echo $personal_info['LastName']; ?></td>
-            </tr>
-            <tr>
-                <td><a href="index.php?action=change_firstname">Edit</a></td>
-                <td><a href="index.php?action=change_lastname">Edit</a></td>
-            </tr>
-        </table>
-        <h2>Login Information</h2>
-        <table>
-            <tr>
-                <th>Email</th>
-                <th>Password</th>
-            </tr>
-            <tr>
-                <td><?php echo $personal_info['email']; ?></td>
-                <td>***********</td>
-            </tr>
-            <tr>
-                <td><a href="index.php?action=change_email">Change</a></td>
-                <td><a href="index.php?action=change_password">Change</a></td>
-            </tr>
-        </table>
-    </section>
+        <div class="form-row">
+            <div class="form-group col">
+                <label for="first_name">First Name &nbsp;<a href="index.php?action=change_firstname">Edit</a></label>
+                <input class="form-control" type="text" placeholder="<?php echo $personal_info['FirstName']; ?>" readonly>
+            </div>
+            <div class="form-group col">
+                <label for="last_name">Last Name &nbsp;<a href="index.php?action=change_lastname">Edit</a></label>
+                <input class="form-control" type="text" id="last_name" placeholder="<?php echo $personal_info['LastName']; ?>" readonly>
+            </div>
+        </div>
+
+        <h4>Login Information</h3>
+
+        <div class="form-row">
+            <div class="form-group col">
+                <label for="email">Email &nbsp;<a href="index.php?action=change_email">Change</a></label>
+                <input class="form-control" id="email" placeholder="<?php echo $personal_info['email']; ?>" readonly type="text">
+            </div>
+            <div class="form-group col">
+                <label for="password">Password &nbsp;<a href="index.php?action=change_password">Change</a></label>
+                <input type="text" class="form-control" id="password" placeholder="*************" readonly>
+            </div>
+        </div>
+    </div>
 </main>
 <?php include '../view/footer.php'; ?>
