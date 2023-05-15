@@ -11,13 +11,9 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     </head>
     <body>
-        <header>
-            <div class="container">
-                <h2>Car Journal</h2>
-            </div>
-        </header>
         <main>
-            <div class="container">
+            <div class="container-fluid">
+                <h2>Car Journal</h2>
                 <h3>Login</h3>
                 <form action="../index.php" method="post" class="aligned">
                     <input type="hidden" name="action" value="login">
