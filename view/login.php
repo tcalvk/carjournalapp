@@ -21,13 +21,17 @@
                 <h3>Login</h3>
                 <form action="../index.php" method="post" class="aligned">
                     <input type="hidden" name="action" value="login">
-                    <div class="form-group">
-                        <label for="email">Email:</label>
-                        <input type="text" class="form-control" id="email" name="email">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="text" class="form-control" id="email" name="email">
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="password">Password:</label>
-                        <input type="password" class="form-control" id="password" name="password">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="password" class="form-control" id="password" name="password">
+                        </div>
                     </div>
                     <input class="btn btn-primary" type="submit" value="Login">&nbsp;
                     <a href="../index.php?action=signup">Sign Up</a>

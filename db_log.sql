@@ -12,7 +12,7 @@ drop table serviceType
 alter table service 
 add serviceType varchar(64) after serviceDate 
 
---Status: Pending
+--Status: Complete
 
 --5/6/23
 
@@ -22,5 +22,5 @@ add Deleted datetime after dateAdded;
 alter table location 
 add Deleted datetime after createdBy;
 
---Status: Pending
+--Status: Complete
 
