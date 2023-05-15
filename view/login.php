@@ -22,13 +22,13 @@
                 <form action="../index.php" method="post" class="aligned">
                     <input type="hidden" name="action" value="login">
                     <div class="form-row">
-                        <div class="form-group">
+                        <div class="form-group col-sm-12">
                             <label for="email">Email:</label>
                             <input type="text" class="form-control" id="email" name="email">
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group">
+                        <div class="form-group col-sm-12">
                             <label for="password">Password:</label>
                             <input type="password" class="form-control" id="password" name="password">
                         </div>
